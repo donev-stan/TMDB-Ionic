@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { map } from 'rxjs';
 import {
   MediaTypeOptions,
   TimeWindowOptions,
 } from 'src/app/interfaces/db-interfaces';
 import { DbService } from 'src/app/services/db.service';
+import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,18 +17,45 @@ import { environment } from 'src/environments/environment';
 export class TrendingPage implements OnInit {
   items: any[] = [];
 
-  mediaType: MediaTypeOptions = { media_type: 'all' };
-  timeWindow: TimeWindowOptions = { time_window: 'week' };
+  private _mediaType: MediaTypeOptions = { media_type: 'all' };
+  private _timeWindow: TimeWindowOptions = { time_window: 'week' };
   currentPage: number = 1;
 
   imageBaseUrl: string = environment.images;
 
+  device!: string;
+
   constructor(
     private dbService: DbService,
-    private loadingCtrl: LoadingController
-  ) {}
+    private loadingCtrl: LoadingController,
+    private deviceType: DeviceTypeService
+  ) {
+    this.device = deviceType.device.device;
+  }
 
   ngOnInit(): void {
+    this.loadItems();
+  }
+
+  get mediaType(): MediaTypeOptions {
+    return this._mediaType;
+  }
+
+  set mediaType(newMediaType: MediaTypeOptions) {
+    this._mediaType = newMediaType;
+
+    this.items = [];
+    this.loadItems();
+  }
+
+  get timeWindow(): TimeWindowOptions {
+    return this._timeWindow;
+  }
+
+  set timeWindow(newTimeWindow: TimeWindowOptions) {
+    this._timeWindow = newTimeWindow;
+
+    this.items = [];
     this.loadItems();
   }
 
@@ -46,9 +74,6 @@ export class TrendingPage implements OnInit {
         next: (response: any) => {
           this.items.push(...response.results);
 
-          // console.log(response);
-          // console.log(this.items);
-
           loading.dismiss();
 
           if (infiniteScrollEvent) {
@@ -66,12 +91,22 @@ export class TrendingPage implements OnInit {
   }
 
   attachImagesUrl() {
+    const imgSize = this.device === 'desktop' ? 'w342' : 'w154';
+
     return map((response: any) => ({
       ...response,
       results: response.results.map((result: any) => ({
         ...result,
-        poster_path: `${this.imageBaseUrl}/w92${result.poster_path}`,
+        poster_path: `${this.imageBaseUrl}/${imgSize}${result.poster_path}`,
       })),
     }));
+  }
+
+  updateMediaType(event: any) {
+    this.mediaType = { media_type: event.target.value };
+  }
+
+  updateTimeWindow(event: any) {
+    this.timeWindow = { time_window: event.target.value };
   }
 }

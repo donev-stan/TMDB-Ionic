@@ -27,4 +27,6 @@ export class DbService {
 
     return this.http.get(url, { params });
   }
+
+  getGenres(media_type: MediaTypeOptions = { media_type: 'all' }) {}
 }

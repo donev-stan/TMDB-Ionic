@@ -22,9 +22,9 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'tab3',
+        path: 'popular',
         loadChildren: () =>
-          import('./tab3/tab3.module').then((m) => m.Tab3PageModule),
+          import('./popular/popular.module').then((m) => m.PopularPageModule),
       },
       {
         path: '',
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/trending',
     pathMatch: 'full',
   },
 ];

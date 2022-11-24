@@ -10,4 +10,28 @@
       <ion-title size="large">Trending</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item button *ngFor="let item of items">
+      <ion-avatar slot="start">
+        <ion-img [src]="item.poster_path"></ion-img>
+      </ion-avatar>
+
+      <ion-label>
+        {{ item.title || item.name }}
+        <p>{{item.release_date || item.first_air_date | date }}</p>
+      </ion-label>
+
+      <ion-badge slot="end">
+        {{item.vote_average | number: '1.1-1'}}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

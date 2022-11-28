@@ -46,6 +46,9 @@ export class TrendingPage implements OnInit {
 
     this.items = [];
     this.loadItems();
+
+    document.getElementById('block')!.click();
+    console.log(document.getElementById('block')?.click());
   }
 
   get timeWindow(): TimeWindowOptions {
@@ -57,6 +60,8 @@ export class TrendingPage implements OnInit {
 
     this.items = [];
     this.loadItems();
+
+    document.getElementById('block')!.click();
   }
 
   async loadItems(infiniteScrollEvent?: any): Promise<void> {
@@ -95,9 +100,9 @@ export class TrendingPage implements OnInit {
 
     return map((response: any) => ({
       ...response,
-      results: response.results.map((result: any) => ({
-        ...result,
-        poster_path: `${this.imageBaseUrl}/${imgSize}${result.poster_path}`,
+      results: response.results.map((item: any) => ({
+        ...item,
+        poster_path: `${this.imageBaseUrl}/${imgSize}${item.poster_path}`,
       })),
     }));
   }

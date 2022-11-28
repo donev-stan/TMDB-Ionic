@@ -28,5 +28,11 @@ export class DbService {
     return this.http.get(url, { params });
   }
 
-  getGenres(media_type: MediaTypeOptions = { media_type: 'all' }) {}
+  getGenres(
+    media_type: MediaTypeOptions = { media_type: 'all' }
+  ): Observable<any> {
+    const url = `${environment.baseUrl}/genres/${media_type}/list`;
+
+    return this.http.get(url, { params: this.params });
+  }
 }

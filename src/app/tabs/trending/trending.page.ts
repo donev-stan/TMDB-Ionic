@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, Platform } from '@ionic/angular';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import {
   MediaTypeOptions,
   TimeWindowOptions,
 } from 'src/app/interfaces/db-interfaces';
-import { DeviceType } from 'src/app/interfaces/shared';
+import { DeviceType, Genres } from 'src/app/interfaces/shared';
 import { DbService } from 'src/app/services/db.service';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { environment } from 'src/environments/environment';
@@ -66,7 +66,11 @@ export class TrendingPage implements OnInit {
 
     this.dbService
       .getTrending(this.mediaType, this.timeWindow, this.currentPage)
-      .pipe(this.attachImagesUrl())
+      .pipe(
+        this.attachImagesUrl(),
+        this.attachGenres(),
+        tap((data) => console.log(data))
+      )
       .subscribe({
         next: (response: any) => {
           this.items.push(...response.results);
@@ -78,6 +82,9 @@ export class TrendingPage implements OnInit {
             infiniteScrollEvent.target.disabled =
               response.total_pages === this.currentPage;
           }
+
+          console.log(this.dbService.movieGenres);
+          console.log(this.dbService.tvGenres);
         },
       });
   }
@@ -89,7 +96,7 @@ export class TrendingPage implements OnInit {
 
   attachImagesUrl() {
     const imgSize =
-      this.deviceType.device.device === 'desktop' ? 'w342' : 'w154';
+      this.deviceType.device.device === 'desktop' ? 'w342' : 'w92';
 
     return map((response: any) => ({
       ...response,
@@ -98,6 +105,30 @@ export class TrendingPage implements OnInit {
         poster_path: `${this.imageBaseUrl}/${imgSize}${item.poster_path}`,
       })),
     }));
+  }
+
+  attachGenres() {
+    return map((response: any) => ({
+      ...response,
+      results: response.results.map((item: any) => ({
+        ...item,
+        genres: this.defineGenreNames(item.genre_ids, item.media_type),
+      })),
+    }));
+  }
+
+  defineGenreNames(arrayOfGenres: any, media_type: MediaTypeOptions): string[] {
+    return arrayOfGenres.flatMap((genreId: Genres) => {
+      if (media_type == ('tv' as unknown as MediaTypeOptions)) {
+        return this.dbService.tvGenres.filter(
+          (tvGenres: any) => tvGenres.id === genreId
+        );
+      } else if (media_type == ('movie' as unknown as MediaTypeOptions)) {
+        return this.dbService.movieGenres.filter(
+          (movieGenres: any) => movieGenres.id === genreId
+        );
+      }
+    });
   }
 
   updateMediaType(event: any) {

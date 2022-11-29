@@ -15,7 +15,33 @@ export class DbService {
     .set('api_key', environment.apiKey)
     .set('language', 'en-US');
 
-  constructor(private http: HttpClient) {}
+  private _movieGenres!: any;
+  private _tvGenres!: any;
+
+  constructor(private http: HttpClient) {
+    this.getGenres({ media_type: 'movie' }).subscribe(
+      (response) => (this.movieGenres = response.genres)
+    );
+    this.getGenres({ media_type: 'tv' }).subscribe(
+      (response) => (this.tvGenres = response.genres)
+    );
+  }
+
+  set movieGenres(genres: any) {
+    this._movieGenres = genres;
+  }
+
+  get movieGenres(): any {
+    return this._movieGenres;
+  }
+
+  set tvGenres(genres: any) {
+    this._tvGenres = genres;
+  }
+
+  get tvGenres(): any {
+    return this._tvGenres;
+  }
 
   getTrending(
     media_type: MediaTypeOptions = { media_type: 'all' },
@@ -28,10 +54,8 @@ export class DbService {
     return this.http.get(url, { params });
   }
 
-  getGenres(
-    media_type: MediaTypeOptions = { media_type: 'all' }
-  ): Observable<any> {
-    const url = `${environment.baseUrl}/genres/${media_type}/list`;
+  getGenres(media_type: MediaTypeOptions): Observable<any> {
+    const url = `${environment.baseUrl}/genre/${media_type.media_type}/list`;
 
     return this.http.get(url, { params: this.params });
   }

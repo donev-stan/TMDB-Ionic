@@ -7,13 +7,22 @@
   <ion-list>
     <ion-item button *ngFor="let item of items">
       <!-- [routerLink]="[item.media_type, item.id]" -->
-      <ion-avatar slot="start">
-        <ion-img [src]="item.poster_path"></ion-img>
+      <ion-avatar
+        slot="start"
+        style="height: 92px; width: auto; --border-radius: 4px"
+      >
+        <ion-img [src]="item.poster_path" style="object-fit: fill"></ion-img>
       </ion-avatar>
 
       <ion-label>
         {{ item.title || item.name }}
         <p>{{item.release_date || item.first_air_date | date }}</p>
+        <p>
+          <span *ngFor="let genre of item.genres; let isLast=last">
+            {{genre.name}}
+            <span *ngIf="!isLast">&#8226;</span>
+          </span>
+        </p>
       </ion-label>
 
       <ion-badge slot="end">
@@ -50,7 +59,12 @@
             >
           </ion-card-header>
 
-          <ion-card-content> Drama, Mystery </ion-card-content>
+          <ion-card-content>
+            <span *ngFor="let genre of item.genres; let isLast=last">
+              {{genre.name}}
+              <span *ngIf="!isLast">&#8226;</span>
+            </span>
+          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DbService } from 'src/app/services/db.service';
 
 @Component({
   selector: 'app-top-rated',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['top-rated.page.scss'],
 })
 export class TopRatedPage {
-  constructor() {}
+  constructor(private dbService: DbService) {}
 }

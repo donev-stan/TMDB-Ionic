@@ -5,6 +5,7 @@ import {
   MediaTypeOptions,
   TimeWindowOptions,
 } from 'src/app/interfaces/db-interfaces';
+import { DeviceType } from 'src/app/interfaces/shared';
 import { DbService } from 'src/app/services/db.service';
 import { DeviceTypeService } from 'src/app/services/device-type.service';
 import { environment } from 'src/environments/environment';
@@ -23,15 +24,11 @@ export class TrendingPage implements OnInit {
 
   imageBaseUrl: string = environment.images;
 
-  device!: string;
-
   constructor(
     private dbService: DbService,
     private loadingCtrl: LoadingController,
     private deviceType: DeviceTypeService
-  ) {
-    this.device = deviceType.device.device;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadItems();
@@ -96,7 +93,8 @@ export class TrendingPage implements OnInit {
   }
 
   attachImagesUrl() {
-    const imgSize = this.device === 'desktop' ? 'w342' : 'w154';
+    const imgSize =
+      this.deviceType.device.device === 'desktop' ? 'w342' : 'w154';
 
     return map((response: any) => ({
       ...response,

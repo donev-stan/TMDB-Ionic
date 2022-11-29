@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-
-interface deviceType {
-  device: 'desktop' | 'mobile';
-}
+import { DeviceType } from '../interfaces/shared';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeviceTypeService {
-  private _device: deviceType;
+  private _device: DeviceType;
 
-  get device(): deviceType {
+  get device(): DeviceType {
     return this._device;
   }
 
-  set device(type: deviceType) {
+  set device(type: DeviceType) {
     this._device = type;
+    console.log(type);
   }
 
   constructor(public platform: Platform) {

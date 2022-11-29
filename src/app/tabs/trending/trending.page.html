@@ -44,72 +44,9 @@
   </div>
 
   <div>
-    <div *ngIf="device === 'mobile'; then mobileView else desktopView"></div>
-
-    <!-- Mobile View -->
-    <ng-template #mobileView>
-      <ion-list>
-        <ion-item
-          button
-          *ngFor="let item of items"
-          [routerLink]="[item.media_type, item.id]"
-        >
-          <ion-avatar slot="start">
-            <ion-img [src]="item.poster_path"></ion-img>
-          </ion-avatar>
-
-          <ion-label>
-            {{ item.title || item.name }}
-            <p>{{item.release_date || item.first_air_date | date }}</p>
-          </ion-label>
-
-          <ion-badge slot="end">
-            {{item.vote_average | number: '1.1-1'}}
-          </ion-badge>
-        </ion-item>
-      </ion-list>
-    </ng-template>
-
-    <!-- Desktop View -->
-    <ng-template #desktopView>
-      <ion-grid>
-        <ion-row>
-          <ion-col
-            size-xl="2"
-            size-lg="3"
-            size-md="4"
-            size-sm="6"
-            size-xs="12"
-            *ngFor="let item of items"
-            id="block"
-          >
-            <ion-card button>
-              <ion-badge class="badge-desktop">
-                {{item.vote_average | number: '1.1-1'}}
-              </ion-badge>
-
-              <ion-img [src]="item.poster_path" class="image-desktop"></ion-img>
-              <ion-card-header>
-                <ion-card-title> {{item.title || item.name}} </ion-card-title>
-                <ion-card-subtitle
-                  >{{item.release_date || item.first_air_date | date
-                  }}</ion-card-subtitle
-                >
-              </ion-card-header>
-
-              <ion-card-content> Drama, Mystery </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ng-template>
-
-    <!-- Infinite Loading -->
-    <ion-infinite-scroll position="bottom" (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more data..."
-      ></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    <app-movie-list
+      [items]="items"
+      (loadMoreItems)="loadMore($event)"
+    ></app-movie-list>
   </div>
 </ion-content>

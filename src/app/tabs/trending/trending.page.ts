@@ -27,7 +27,7 @@ export class TrendingPage implements OnInit {
   constructor(
     private dbService: DbService,
     private loadingCtrl: LoadingController,
-    private deviceType: DeviceTypeService
+    public deviceType: DeviceTypeService
   ) {}
 
   ngOnInit(): void {
@@ -43,9 +43,6 @@ export class TrendingPage implements OnInit {
 
     this.items = [];
     this.loadItems();
-
-    document.getElementById('block')!.click();
-    console.log(document.getElementById('block')?.click());
   }
 
   get timeWindow(): TimeWindowOptions {
@@ -57,8 +54,6 @@ export class TrendingPage implements OnInit {
 
     this.items = [];
     this.loadItems();
-
-    document.getElementById('block')!.click();
   }
 
   async loadItems(infiniteScrollEvent?: any): Promise<void> {

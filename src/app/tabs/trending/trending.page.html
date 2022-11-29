@@ -1,6 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Trending </ion-title>
+    <ion-title slot="start"> Trending </ion-title>
+
+    <!-- Filters -->
+    <!-- *ngIf="deviceType.device.device === 'desktop'" -->
+    <div slot="end" class="filters-box-desktop">
+      <!-- Media Type -->
+      <ion-list>
+        <ion-item>
+          <ion-select
+            interface="popover"
+            placeholder="Select Media"
+            [value]="mediaType.media_type"
+            (ionChange)="updateMediaType($event)"
+          >
+            <ion-select-option value="all">All</ion-select-option>
+            <ion-select-option value="movie">Movies</ion-select-option>
+            <ion-select-option value="tv">Show</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <!-- Time Window -->
+      <ion-list>
+        <ion-item>
+          <ion-select
+            interface="popover"
+            placeholder="Select Time"
+            [value]="timeWindow.time_window"
+            (ionChange)="updateTimeWindow($event)"
+          >
+            <ion-select-option value="day">Day</ion-select-option>
+            <ion-select-option value="week">Week</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -11,42 +46,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Filters -->
-  <div>
-    <!-- Media Type -->
-    <ion-segment
-      [value]="mediaType.media_type"
-      (ionChange)="updateMediaType($event)"
-    >
-      <ion-segment-button value="all">
-        <ion-label>All</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="movie">
-        <ion-label>Movies</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="tv">
-        <ion-label>Shows</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-
-    <!-- Time Window -->
-    <ion-segment
-      [value]="timeWindow.time_window"
-      (ionChange)="updateTimeWindow($event)"
-    >
-      <ion-segment-button value="day">
-        <ion-label>Day</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="week">
-        <ion-label>Week</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-  <div>
-    <app-movie-list
-      [items]="items"
-      (loadMoreItems)="loadMore($event)"
-    ></app-movie-list>
-  </div>
+  <app-movie-list
+    [items]="items"
+    (loadMoreItems)="loadMore($event)"
+  ></app-movie-list>
 </ion-content>

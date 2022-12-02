@@ -1,4 +1,13 @@
 <ion-tabs>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">This is the menu content.</ion-content>
+  </ion-menu>
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="trending">
       <ion-icon name="trending-up-outline"></ion-icon>
@@ -15,9 +24,11 @@
       <ion-label>Popular</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="menu">
-      <ion-icon name="menu-outline"></ion-icon>
-      <ion-label>Menu</ion-label>
-    </ion-tab-button>
+    <ion-menu-button>
+      <ion-tab-button>
+        <ion-icon name="menu-outline"></ion-icon>
+        <ion-label id="main-content">Menu</ion-label>
+      </ion-tab-button>
+    </ion-menu-button>
   </ion-tab-bar>
 </ion-tabs>

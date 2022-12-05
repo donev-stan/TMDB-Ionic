@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DeviceTypeService } from 'src/app/services/device-type.service';
+import { DeviceTypeService } from 'src/app/shared/services/device-type.service';
 
 @Component({
   selector: 'app-movie-list',

@@ -7,24 +7,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
-  {
-    path: 'trending',
-    loadChildren: () =>
-      import('./trending/trending.module').then((m) => m.TrendingPageModule),
-  },
-  {
-    path: 'popular',
-    loadChildren: () =>
-      import('./popular/popular.module').then((m) => m.PopularPageModule),
-  },  {
-    path: 'discover',
-    loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
-  },
-  {
-    path: 'search',
-    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
-  },
-
 ];
 @NgModule({
   imports: [

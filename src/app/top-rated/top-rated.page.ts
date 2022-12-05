@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DbService } from 'src/app/services/db.service';
+import { DbService } from 'src/app/shared/services/db.service';
 
 @Component({
   selector: 'app-top-rated',

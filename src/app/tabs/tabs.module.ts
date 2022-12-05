@@ -7,7 +7,6 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 import { RouterModule } from '@angular/router';
-import { MenuPageModule } from '../menu/menu.module';
 
 @NgModule({
   imports: [
@@ -16,7 +15,6 @@ import { MenuPageModule } from '../menu/menu.module';
     FormsModule,
     TabsPageRoutingModule,
     RouterModule,
-    MenuPageModule,
   ],
   declarations: [TabsPage],
 })

@@ -4,10 +4,10 @@ import { map, tap } from 'rxjs';
 import {
   MediaTypeOptions,
   TimeWindowOptions,
-} from 'src/app/interfaces/db-interfaces';
-import { DeviceType, Genres } from 'src/app/interfaces/shared';
-import { DbService } from 'src/app/services/db.service';
-import { DeviceTypeService } from 'src/app/services/device-type.service';
+} from 'src/app/shared/interfaces/db-interfaces';
+import { DeviceType, Genres } from 'src/app/shared/interfaces/shared';
+import { DbService } from 'src/app/shared/services/db.service';
+import { DeviceTypeService } from 'src/app/shared/services/device-type.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

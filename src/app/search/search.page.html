@@ -2,7 +2,27 @@
   <ion-toolbar>
     <ion-menu-button slot="start"> </ion-menu-button>
     <ion-title>Search</ion-title>
+
+    <!-- Filters -->
+    <div slot="end" class="filters-box">
+      <!-- Media Type -->
+      <div class="filter-media">
+        <ion-select
+          interface="popover"
+          placeholder="Select Media"
+          [value]="mediaType.media_type"
+          (ionChange)="updateMediaType($event)"
+        >
+          <ion-select-option value="movie">Movies</ion-select-option>
+          <ion-select-option value="tv">Shows</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-item>
+    <ion-input [clearInput]="true" placeholder="Enter keyword "></ion-input>
+  </ion-item>
+</ion-content>

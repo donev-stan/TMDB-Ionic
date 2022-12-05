@@ -22,32 +22,34 @@
 </ion-header>
 
 <ion-content>
-  <!-- Discover Filters -->
-  <ion-accordion-group expand="inset">
-    <!-- Sort -->
-    <ion-accordion>
-      <ion-item slot="header">
-        <ion-label>Sort</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">First Content</div>
-    </ion-accordion>
+  <ion-item>
+    <!-- Discover Filters -->
+    <ion-accordion-group expand="inset">
+      <!-- Sort -->
+      <ion-accordion>
+        <ion-item slot="header">
+          <ion-label>Sort</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">First Content</div>
+      </ion-accordion>
 
-    <!-- Filters -->
-    <ion-accordion>
-      <ion-item slot="header">
-        <ion-label>Filters</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">Second Content</div>
-    </ion-accordion>
+      <!-- Filters -->
+      <ion-accordion>
+        <ion-item slot="header">
+          <ion-label>Filters</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Second Content</div>
+      </ion-accordion>
 
-    <!-- Where to Watch -->
-    <ion-accordion>
-      <ion-item slot="header">
-        <ion-label>Where to Watch</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">Third Content</div>
-    </ion-accordion>
-  </ion-accordion-group>
+      <!-- Where to Watch -->
+      <ion-accordion>
+        <ion-item slot="header">
+          <ion-label>Where to Watch</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Third Content</div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </ion-item>
 
   <app-item-list
     [items]="items"

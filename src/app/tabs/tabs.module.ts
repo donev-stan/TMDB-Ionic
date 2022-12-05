@@ -6,8 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
+import { RouterModule } from '@angular/router';
 import { MenuPageModule } from '../menu/menu.module';
-import { RouterModule, RouterOutlet } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
-    MenuPageModule,
     RouterModule,
+    MenuPageModule,
   ],
   declarations: [TabsPage],
 })

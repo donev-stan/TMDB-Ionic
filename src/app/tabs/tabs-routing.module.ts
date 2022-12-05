@@ -20,6 +20,13 @@ const routes: Routes = [
           import('../search/search.module').then((m) => m.SearchPageModule),
       },
       {
+        path: 'trending',
+        loadChildren: () =>
+          import('../trending/trending.module').then(
+            (m) => m.TrendingPageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: '/discover',
         pathMatch: 'full',

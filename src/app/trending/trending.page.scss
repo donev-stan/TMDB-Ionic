@@ -1,11 +1,5 @@
-.filters-box {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
-
-  .filter-media,
-  .filter-time {
-    flex: 1;
-    width: 90px;
-  }
+.filter-media,
+.filter-time {
+  flex: 1;
+  width: 90px;
 }

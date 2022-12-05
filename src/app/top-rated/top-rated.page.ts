@@ -4,7 +4,9 @@ import { map, tap } from 'rxjs';
 import { DbService } from 'src/app/shared/services/db.service';
 import { environment } from 'src/environments/environment';
 import { MediaTypeOptions } from '../shared/interfaces/db-interfaces';
+import { Genres } from '../shared/interfaces/shared';
 import { DeviceTypeService } from '../shared/services/device-type.service';
+import { SharedMethodsService } from '../shared/services/shared-methods.service';
 
 @Component({
   selector: 'app-top-rated',
@@ -14,7 +16,7 @@ import { DeviceTypeService } from '../shared/services/device-type.service';
 export class TopRatedPage {
   items: any[] = [];
   currentPage: number = 1;
-  imageBaseUrl: string = environment.images;
+  // imageBaseUrl: string = environment.images;
 
   private _mediaType: MediaTypeOptions = { media_type: 'movie' };
 
@@ -32,7 +34,7 @@ export class TopRatedPage {
   constructor(
     private dbService: DbService,
     private loadingCtrl: LoadingController,
-    public deviceType: DeviceTypeService
+    private helpers: SharedMethodsService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,10 @@ export class TopRatedPage {
     this.dbService
       .getTopRated(this.mediaType, this.currentPage)
       .pipe(
-        this.attachImagesUrl(),
+        this.helpers.attachImagesUrl(),
+        this.helpers.attachGenres(
+          this.mediaType.media_type as unknown as MediaTypeOptions
+        ),
         tap((data) => console.log(data))
       )
       .subscribe({
@@ -74,19 +79,6 @@ export class TopRatedPage {
   loadMore(event: any) {
     this.currentPage++;
     this.loadItems(event);
-  }
-
-  attachImagesUrl() {
-    const imgSize =
-      this.deviceType.device.device === 'desktop' ? 'w342' : 'w92';
-
-    return map((response: any) => ({
-      ...response,
-      results: response.results.map((item: any) => ({
-        ...item,
-        poster_path: `${this.imageBaseUrl}/${imgSize}${item.poster_path}`,
-      })),
-    }));
   }
 
   updateMediaType(event: any) {

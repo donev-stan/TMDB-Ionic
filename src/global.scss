@@ -28,3 +28,9 @@ ion-title {
 ion-toolbar {
   padding: 0 15px;
 }
+
+.filters-box {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}

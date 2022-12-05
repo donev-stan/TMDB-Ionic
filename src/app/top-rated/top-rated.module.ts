@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TopRatedPage } from './top-rated.page';
 
 import { TopRatedPageRoutingModule } from './top-rated-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared/components/shared-components.module';
 
 @NgModule({
   imports: [

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TrendingPage } from './trending.page';
 
 import { TrendingPageRoutingModule } from './trending-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared/components/shared-components.module';
 
 @NgModule({
   imports: [

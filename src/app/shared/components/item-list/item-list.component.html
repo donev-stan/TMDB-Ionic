@@ -1,5 +1,9 @@
 <div
-  *ngIf="deviceType.device.device === 'mobile'; then mobileView else desktopView"
+  *ngIf="
+    deviceType.device.device === 'mobile';
+    then mobileView;
+    else desktopView
+  "
 ></div>
 
 <!-- Mobile View -->
@@ -16,17 +20,17 @@
 
       <ion-label>
         {{ item.title || item.name }}
-        <p>{{item.release_date || item.first_air_date | date }}</p>
+        <p>{{ item.release_date || item.first_air_date | date }}</p>
         <p>
-          <span *ngFor="let genre of item.genres; let isLast=last">
-            {{genre.name}}
+          <span *ngFor="let genre of item.genres; let isLast = last">
+            {{ genre.name }}
             <span *ngIf="!isLast">&#8226;</span>
           </span>
         </p>
       </ion-label>
 
       <ion-badge slot="end">
-        {{item.vote_average | number: '1.1-1'}}
+        {{ item.vote_average | number : "1.1-1" }}
       </ion-badge>
     </ion-item>
   </ion-list>
@@ -47,21 +51,20 @@
       >
         <ion-card button>
           <ion-badge class="badge-desktop">
-            {{item.vote_average | number: '1.1-1'}}
+            {{ item.vote_average | number : "1.1-1" }}
           </ion-badge>
 
           <ion-img [src]="item.poster_path" class="image-desktop"></ion-img>
           <ion-card-header>
-            <ion-card-title> {{item.title || item.name}} </ion-card-title>
-            <ion-card-subtitle
-              >{{item.release_date || item.first_air_date | date
-              }}</ion-card-subtitle
-            >
+            <ion-card-title> {{ item.title || item.name }} </ion-card-title>
+            <ion-card-subtitle>{{
+              item.release_date || item.first_air_date | date
+            }}</ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
-            <span *ngFor="let genre of item.genres; let isLast=last">
-              {{genre.name}}
+            <span *ngFor="let genre of item.genres; let isLast = last">
+              {{ genre.name }}
               <span *ngIf="!isLast">&#8226;</span>
             </span>
           </ion-card-content>

@@ -6,7 +6,7 @@
   <ion-router-outlet id="main-content"></ion-router-outlet>
 
   <!-- Bottom Tab Menu -->
-  <ion-tabs>
+  <ion-tabs *ngIf="deviceType.device.device === 'mobile'">
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="discover">
         <ion-icon name="compass-outline"></ion-icon>

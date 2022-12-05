@@ -7,6 +7,8 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'discover',
   },
+
+  // Find
   {
     path: 'discover',
     loadChildren: () =>
@@ -16,6 +18,13 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () =>
       import('./search/search.module').then((m) => m.SearchPageModule),
+  },
+
+  // View
+  {
+    path: 'trending',
+    loadChildren: () =>
+      import('./trending/trending.module').then((m) => m.TrendingPageModule),
   },
 ];
 @NgModule({

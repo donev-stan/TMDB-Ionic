@@ -1,4 +1,12 @@
 .filters-box {
   display: flex;
   justify-content: flex-end;
+  margin-right: 15px;
+
+  width: 180px;
+
+  .filter-media,
+  .filter-time {
+    flex: 1;
+  }
 }

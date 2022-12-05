@@ -7,35 +7,31 @@
     <!-- Filters -->
     <div slot="end" class="filters-box">
       <!-- Media Type -->
-      <ion-list>
-        <ion-item>
-          <ion-select
-            interface="popover"
-            placeholder="Select Media"
-            [value]="mediaType.media_type"
-            (ionChange)="updateMediaType($event)"
-          >
-            <ion-select-option value="all">All</ion-select-option>
-            <ion-select-option value="movie">Movies</ion-select-option>
-            <ion-select-option value="tv">Show</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+      <div class="filter-media">
+        <ion-select
+          interface="popover"
+          placeholder="Select Media"
+          [value]="mediaType.media_type"
+          (ionChange)="updateMediaType($event)"
+        >
+          <ion-select-option value="all">All</ion-select-option>
+          <ion-select-option value="movie">Movies</ion-select-option>
+          <ion-select-option value="tv">Show</ion-select-option>
+        </ion-select>
+      </div>
 
       <!-- Time Window -->
-      <ion-list>
-        <ion-item>
-          <ion-select
-            interface="popover"
-            placeholder="Select Time"
-            [value]="timeWindow.time_window"
-            (ionChange)="updateTimeWindow($event)"
-          >
-            <ion-select-option value="day">Day</ion-select-option>
-            <ion-select-option value="week">Week</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+      <div class="filter-time">
+        <ion-select
+          interface="popover"
+          placeholder="Select Time"
+          [value]="timeWindow.time_window"
+          (ionChange)="updateTimeWindow($event)"
+        >
+          <ion-select-option value="day">Day</ion-select-option>
+          <ion-select-option value="week">Week</ion-select-option>
+        </ion-select>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>

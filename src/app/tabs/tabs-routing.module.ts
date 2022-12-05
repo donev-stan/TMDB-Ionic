@@ -4,38 +4,31 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: 'trending',
+        path: 'discover',
         loadChildren: () =>
-          import('./trending/trending.module').then(
-            (m) => m.TrendingPageModule
+          import('../discover/discover.module').then(
+            (m) => m.DiscoverPageModule
           ),
       },
       {
-        path: 'top-rated',
+        path: 'search',
         loadChildren: () =>
-          import('./top-rated/top-rated.module').then(
-            (m) => m.TopRatedPageModule
-          ),
-      },
-      {
-        path: 'popular',
-        loadChildren: () =>
-          import('./popular/popular.module').then((m) => m.PopularPageModule),
+          import('../search/search.module').then((m) => m.SearchPageModule),
       },
       {
         path: '',
-        redirectTo: '/tabs/trending',
+        redirectTo: '/discover',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/trending',
+    redirectTo: '/discover',
     pathMatch: 'full',
   },
 ];

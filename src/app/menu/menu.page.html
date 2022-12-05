@@ -1,9 +1,48 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>menu</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-menu contentId="menu-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>TMDB</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list id="inbox-list">
+      <ion-list-header>Inbox</ion-list-header>
 
-<ion-content>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item
+          routerDirection="root"
+          lines="none"
+          detail="false"
+          routerLinkActive="selected"
+        >
+          <ion-icon slot="start" name="trending-up-outline"></ion-icon>
+          <ion-label>Something </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
 
-</ion-content>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item
+          routerDirection="root"
+          lines="none"
+          detail="false"
+          routerLinkActive="selected"
+        >
+          <ion-icon slot="start" name="trending-up-outline"></ion-icon>
+          <ion-label>Something </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle auto-hide="false">
+        <ion-item
+          routerDirection="root"
+          lines="none"
+          detail="false"
+          routerLinkActive="selected"
+        >
+          <ion-icon slot="start" name="trending-up-outline"></ion-icon>
+          <ion-label>Something </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>

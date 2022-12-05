@@ -79,4 +79,14 @@ export class DbService {
 
     return this.http.get(url, { params: this.params });
   }
+
+  discover(
+    media_type: MediaTypeOptions = { media_type: 'movie' },
+    page: number = 1
+  ): Observable<any> {
+    const url = `${environment.baseUrl}/discover/${media_type.media_type}`;
+    const params = this.params.append('page', page);
+
+    return this.http.get(url, { params });
+  }
 }

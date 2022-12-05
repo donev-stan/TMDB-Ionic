@@ -2,29 +2,55 @@
   <ion-toolbar>
     <ion-menu-button slot="start"> </ion-menu-button>
     <ion-title>Discover</ion-title>
+
+    <!-- Filters -->
+    <div slot="end" class="filters-box">
+      <!-- Media Type -->
+      <div class="filter-media">
+        <ion-select
+          interface="popover"
+          placeholder="Select Media"
+          [value]="mediaType.media_type"
+          (ionChange)="updateMediaType($event)"
+        >
+          <ion-select-option value="movie">Movies</ion-select-option>
+          <ion-select-option value="tv">Shows</ion-select-option>
+        </ion-select>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!-- Discover Filters -->
   <ion-accordion-group expand="inset">
-    <ion-accordion value="first">
-      <ion-item slot="header" color="light">
-        <ion-label>First Accordion</ion-label>
+    <!-- Sort -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Sort</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">First Content</div>
     </ion-accordion>
-    <ion-accordion value="second">
-      <ion-item slot="header" color="light">
-        <ion-label>Second Accordion</ion-label>
+
+    <!-- Filters -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Filters</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">Second Content</div>
     </ion-accordion>
-    <ion-accordion value="third">
-      <ion-item slot="header" color="light">
-        <ion-label>Third Accordion</ion-label>
+
+    <!-- Where to Watch -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Where to Watch</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">Third Content</div>
     </ion-accordion>
   </ion-accordion-group>
+
+  <app-item-list
+    [items]="items"
+    (loadMoreItems)="loadMore($event)"
+  ></app-item-list>
 </ion-content>

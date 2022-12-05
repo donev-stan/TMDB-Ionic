@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { map, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { DbService } from 'src/app/shared/services/db.service';
-import { environment } from 'src/environments/environment';
 import { MediaTypeOptions } from '../shared/interfaces/db-interfaces';
-import { Genres } from '../shared/interfaces/shared';
-import { DeviceTypeService } from '../shared/services/device-type.service';
 import { SharedMethodsService } from '../shared/services/shared-methods.service';
 
 @Component({

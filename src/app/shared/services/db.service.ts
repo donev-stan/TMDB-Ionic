@@ -64,6 +64,16 @@ export class DbService {
     return this.http.get(url, { params });
   }
 
+  getPopular(
+    media_type: MediaTypeOptions = { media_type: 'movie' },
+    page: number = 1
+  ): Observable<any> {
+    const url = `${environment.baseUrl}/${media_type.media_type}/popular`;
+    const params = this.params.append('page', page);
+
+    return this.http.get(url, { params });
+  }
+
   getGenres(media_type: MediaTypeOptions): Observable<any> {
     const url = `${environment.baseUrl}/genre/${media_type.media_type}/list`;
 

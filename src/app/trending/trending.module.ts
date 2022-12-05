@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TrendingPage } from './trending.page';
 
 import { TrendingPageRoutingModule } from './trending-routing.module';
-import { SharedModule } from 'src/app/shared/components/shared-components.module';
+import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { SharedModule } from 'src/app/shared/components/shared-components.module
     CommonModule,
     FormsModule,
     TrendingPageRoutingModule,
-    SharedModule,
+    SharedComponentsModule,
   ],
   declarations: [TrendingPage],
 })

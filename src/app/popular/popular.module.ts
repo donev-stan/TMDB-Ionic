@@ -5,9 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { PopularPage } from './popular.page';
 
 import { PopularPageRoutingModule } from './popular-routing.module';
+import { SharedComponentsModule } from '../shared/components/shared-components.module';
 
 @NgModule({
-  imports: [IonicModule, CommonModule, FormsModule, PopularPageRoutingModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    PopularPageRoutingModule,
+    SharedComponentsModule,
+  ],
   declarations: [PopularPage],
 })
 export class PopularPageModule {}

@@ -8,4 +8,4 @@ import { ItemListModule } from './item-list/item-list.module';
   imports: [CommonModule, IonicModule, ItemListModule],
   exports: [ItemListModule],
 })
-export class SharedModule {}
+export class SharedComponentsModule {}

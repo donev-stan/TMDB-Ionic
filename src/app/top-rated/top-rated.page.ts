@@ -7,5 +7,5 @@ import { DbService } from 'src/app/shared/services/db.service';
   styleUrls: ['top-rated.page.scss'],
 })
 export class TopRatedPage {
-  constructor(private dbService: DbService) {}
+  // constructor(private dbService: DbService) {}
 }

@@ -5,7 +5,7 @@ import {
   MediaTypeOptions,
   TimeWindowOptions,
 } from 'src/app/shared/interfaces/db-interfaces';
-import { DeviceType, Genres } from 'src/app/shared/interfaces/shared';
+import { Genres } from 'src/app/shared/interfaces/shared';
 import { DbService } from 'src/app/shared/services/db.service';
 import { DeviceTypeService } from 'src/app/shared/services/device-type.service';
 import { environment } from 'src/environments/environment';

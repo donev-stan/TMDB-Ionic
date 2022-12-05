@@ -5,9 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { TopRatedPage } from './top-rated.page';
 
 import { TopRatedPageRoutingModule } from './top-rated-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [IonicModule, CommonModule, FormsModule, TopRatedPageRoutingModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    TopRatedPageRoutingModule,
+    SharedModule,
+  ],
   declarations: [TopRatedPage],
 })
 export class TopRatedPageModule {}

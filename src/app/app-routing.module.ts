@@ -3,6 +3,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'discover',
+  },
+  {
     path: 'discover',
     loadChildren: () =>
       import('./discover/discover.module').then((m) => m.DiscoverPageModule),

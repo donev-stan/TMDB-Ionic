@@ -26,6 +26,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./trending/trending.module').then((m) => m.TrendingPageModule),
   },
+  {
+    path: 'top-rated',
+    loadChildren: () =>
+      import('./top-rated/top-rated.module').then((m) => m.TopRatedPageModule),
+  },
+  {
+    path: 'popular',
+    loadChildren: () =>
+      import('./popular/popular.module').then((m) => m.PopularPageModule),
+  },
 ];
 @NgModule({
   imports: [

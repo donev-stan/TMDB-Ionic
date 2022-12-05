@@ -9,6 +9,7 @@ import { Genres } from 'src/app/shared/interfaces/shared';
 import { DbService } from 'src/app/shared/services/db.service';
 import { DeviceTypeService } from 'src/app/shared/services/device-type.service';
 import { environment } from 'src/environments/environment';
+import { SharedMethodsService } from '../shared/services/shared-methods.service';
 
 @Component({
   selector: 'app-trending',
@@ -22,12 +23,10 @@ export class TrendingPage implements OnInit {
   private _timeWindow: TimeWindowOptions = { time_window: 'week' };
   currentPage: number = 1;
 
-  imageBaseUrl: string = environment.images;
-
   constructor(
     private dbService: DbService,
     private loadingCtrl: LoadingController,
-    public deviceType: DeviceTypeService
+    private helpers: SharedMethodsService
   ) {}
 
   ngOnInit(): void {
@@ -67,8 +66,8 @@ export class TrendingPage implements OnInit {
     this.dbService
       .getTrending(this.mediaType, this.timeWindow, this.currentPage)
       .pipe(
-        this.attachImagesUrl(),
-        this.attachGenres(),
+        this.helpers.attachImagesUrl(),
+        this.helpers.attachGenres(),
         tap((data) => console.log(data))
       )
       .subscribe({
@@ -92,43 +91,6 @@ export class TrendingPage implements OnInit {
   loadMore(event: any) {
     this.currentPage++;
     this.loadItems(event);
-  }
-
-  attachImagesUrl() {
-    const imgSize =
-      this.deviceType.device.device === 'desktop' ? 'w342' : 'w92';
-
-    return map((response: any) => ({
-      ...response,
-      results: response.results.map((item: any) => ({
-        ...item,
-        poster_path: `${this.imageBaseUrl}/${imgSize}${item.poster_path}`,
-      })),
-    }));
-  }
-
-  attachGenres() {
-    return map((response: any) => ({
-      ...response,
-      results: response.results.map((item: any) => ({
-        ...item,
-        genres: this.defineGenreNames(item.genre_ids, item.media_type),
-      })),
-    }));
-  }
-
-  defineGenreNames(arrayOfGenres: any, media_type: MediaTypeOptions): string[] {
-    return arrayOfGenres.flatMap((genreId: Genres) => {
-      if (media_type == ('tv' as unknown as MediaTypeOptions)) {
-        return this.dbService.tvGenres.filter(
-          (tvGenres: any) => tvGenres.id === genreId
-        );
-      } else if (media_type == ('movie' as unknown as MediaTypeOptions)) {
-        return this.dbService.movieGenres.filter(
-          (movieGenres: any) => movieGenres.id === genreId
-        );
-      }
-    });
   }
 
   updateMediaType(event: any) {

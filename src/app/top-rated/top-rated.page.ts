@@ -16,7 +16,6 @@ import { SharedMethodsService } from '../shared/services/shared-methods.service'
 export class TopRatedPage {
   items: any[] = [];
   currentPage: number = 1;
-  // imageBaseUrl: string = environment.images;
 
   private _mediaType: MediaTypeOptions = { media_type: 'movie' };
 

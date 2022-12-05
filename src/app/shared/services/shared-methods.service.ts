@@ -30,12 +30,15 @@ export class SharedMethodsService {
     }));
   }
 
-  attachGenres(media_type: MediaTypeOptions) {
+  attachGenres(media_type?: MediaTypeOptions) {
     return map((response: any) => ({
       ...response,
       results: response.results.map((item: any) => ({
         ...item,
-        genres: this.defineGenreNames(item.genre_ids, media_type),
+        genres: this.defineGenreNames(
+          item.genre_ids,
+          media_type ? media_type : item.media_type
+        ),
       })),
     }));
   }

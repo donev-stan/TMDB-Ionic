@@ -3,25 +3,12 @@
     <ion-menu-button slot="start"> </ion-menu-button>
     <ion-title>Discover</ion-title>
 
-    <!-- Filters -->
+    <!-- Filters Btn -->
     <div slot="end" class="filters-box">
       <div class="filters-btn">
         <ion-button id="open-modal" expand="block">
           <ion-icon name="funnel-outline"></ion-icon>
         </ion-button>
-      </div>
-
-      <!-- Media Type -->
-      <div class="filter-media">
-        <ion-select
-          interface="popover"
-          placeholder="Select Media"
-          [value]="mediaType.media_type"
-          (ionChange)="updateMediaType($event)"
-        >
-          <ion-select-option value="movie">Movies</ion-select-option>
-          <ion-select-option value="tv">Shows</ion-select-option>
-        </ion-select>
       </div>
     </div>
   </ion-toolbar>
@@ -44,6 +31,20 @@
       </ion-header>
 
       <ion-content>
+        <!-- Media Type -->
+        <ion-segment
+          value="movie"
+          [value]="mediaType.media_type"
+          (ionChange)="updateMediaType($event)"
+        >
+          <ion-segment-button value="movie">
+            <ion-label>Movies</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="tv">
+            <ion-label>Shows</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
         <!-- Discover Filters -->
         <ion-accordion-group expand="inset">
           <!-- Sort -->

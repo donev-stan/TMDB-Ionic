@@ -5,6 +5,12 @@
 
     <!-- Filters -->
     <div slot="end" class="filters-box">
+      <div class="filters-btn">
+        <ion-button id="open-modal" expand="block">
+          <ion-icon name="funnel-outline"></ion-icon>
+        </ion-button>
+      </div>
+
       <!-- Media Type -->
       <div class="filter-media">
         <ion-select
@@ -22,34 +28,51 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <!-- Discover Filters -->
-    <ion-accordion-group expand="inset">
-      <!-- Sort -->
-      <ion-accordion>
-        <ion-item slot="header">
-          <ion-label>Sort</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">First Content</div>
-      </ion-accordion>
+  <!-- Filters Modal -->
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <!-- <ion-title>MODAL TITLE</ion-title> -->
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
 
-      <!-- Filters -->
-      <ion-accordion>
-        <ion-item slot="header">
-          <ion-label>Filters</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">Second Content</div>
-      </ion-accordion>
+      <ion-content>
+        <!-- Discover Filters -->
+        <ion-accordion-group expand="inset">
+          <!-- Sort -->
+          <ion-accordion>
+            <ion-item slot="header">
+              <ion-label>Sort</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">First Content</div>
+          </ion-accordion>
 
-      <!-- Where to Watch -->
-      <ion-accordion>
-        <ion-item slot="header">
-          <ion-label>Where to Watch</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">Third Content</div>
-      </ion-accordion>
-    </ion-accordion-group>
-  </ion-item>
+          <!-- Filters -->
+          <ion-accordion>
+            <ion-item slot="header">
+              <ion-label>Filters</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">Second Content</div>
+          </ion-accordion>
+
+          <!-- Where to Watch -->
+          <ion-accordion>
+            <ion-item slot="header">
+              <ion-label>Where to Watch</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">Third Content</div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
   <app-item-list
     [items]="items"

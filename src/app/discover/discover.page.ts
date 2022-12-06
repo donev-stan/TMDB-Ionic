@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonModal, LoadingController } from '@ionic/angular';
 import { tap } from 'rxjs';
 import { MediaTypeOptions } from '../shared/interfaces/db-interfaces';
 import { DbService } from '../shared/services/db.service';
 import { SharedMethodsService } from '../shared/services/shared-methods.service';
+
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-discover',
@@ -78,5 +80,24 @@ export class DiscoverPage implements OnInit {
 
   updateMediaType(event: any) {
     this.mediaType = { media_type: event.target.value };
+  }
+
+  @ViewChild(IonModal) modal!: IonModal;
+
+  name!: string;
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.name, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      console.log(ev.detail.data);
+    }
   }
 }
